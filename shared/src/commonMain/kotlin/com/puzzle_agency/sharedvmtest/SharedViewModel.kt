@@ -27,7 +27,7 @@ class SharedViewModel : KMMViewModel() {
 
     private val channel = Channel<Boolean>()
 
-    @NativeCoroutines
+    //@NativeCoroutines
     val oneTimeEventFlow: CommonFlow<Boolean> = channel.receiveAsFlow().asCommonFlow()
 
     init {
