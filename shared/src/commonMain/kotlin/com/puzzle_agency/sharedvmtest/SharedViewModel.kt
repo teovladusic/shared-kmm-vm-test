@@ -41,6 +41,12 @@ class SharedViewModel : KMMViewModel() {
         viewModelScope.coroutineScope.launch {
             delay(5_000)
             channel.send(true)
+
+            delay(5_000)
+            channel.send(true)
+
+            delay(10_000)
+            channel.send(false)
         }
     }
 }
