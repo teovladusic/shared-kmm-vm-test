@@ -33,6 +33,7 @@ kotlin {
                 //put your multiplatform dependencies here
                 api("com.rickclephas.kmm:kmm-viewmodel-core:1.0.0-ALPHA-14")
                 implementation("io.insert-koin:koin-core:3.4.3")
+                implementation("io.ktor:ktor-client-core:2.3.4")
             }
         }
         val commonTest by getting {
