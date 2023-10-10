@@ -1,6 +1,7 @@
 package com.puzzle_agency.sharedvmtest.android
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -30,6 +31,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colors.background
                 ) {
                     val state by viewModel.state.collectAsState()
+
+                    viewModel.oneTimeEventFlow.watch {
+                        Log.d("teoteoteo", it.toString())
+                    }
 
                     Column(modifier = Modifier.fillMaxSize()) {
                         if (state.isLoading) {

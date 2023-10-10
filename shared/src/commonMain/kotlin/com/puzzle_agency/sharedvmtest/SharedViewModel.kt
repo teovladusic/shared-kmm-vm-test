@@ -18,7 +18,7 @@ import io.ktor.utils.io.core.Closeable
 import kotlinx.coroutines.*
 import kotlinx.coroutines.flow.*
 
-class SharedViewModel: KMMViewModel() {
+class SharedViewModel : KMMViewModel() {
 
     private val _state = MutableStateFlow(viewModelScope = viewModelScope, TestState())
 
@@ -28,7 +28,7 @@ class SharedViewModel: KMMViewModel() {
     private val channel = Channel<Boolean>()
 
     @NativeCoroutines
-    val oneTimeEventFlow = channel.receiveAsFlow().asCommonFlow()
+    val oneTimeEventFlow: CommonFlow<Boolean> = channel.receiveAsFlow().asCommonFlow()
 
     init {
         viewModelScope.coroutineScope.launch {
