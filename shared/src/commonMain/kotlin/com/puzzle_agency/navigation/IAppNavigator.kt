@@ -18,14 +18,14 @@ interface IAppNavigator {
     )
 
     suspend fun navigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
 
     fun tryNavigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
@@ -39,14 +39,28 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class NavigateTo(
-        val destination: Destination,
+        val destination: DestinationScreen,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
     ) : NavigationIntent()
+
+    data class SwitchRootScreen(val destination: SwitchRootDestination) : NavigationIntent()
 }
 
-enum class Destination(val route: String) {
-    Auth1("auth1"),
-    Auth2("auth2")
+object DestinationScreenRoutes {
+    const val HOME = "home"
+    const val AUTH1 = "auth1"
+    const val AUTH2 = "auth2"
+}
+
+enum class DestinationScreen(val route: String) {
+    Home(DestinationScreenRoutes.HOME),
+    Auth1(DestinationScreenRoutes.AUTH1),
+    Auth2(DestinationScreenRoutes.AUTH2)
+}
+
+enum class SwitchRootDestination() {
+    Home,
+    Auth
 }

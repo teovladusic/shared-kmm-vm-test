@@ -12,12 +12,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.puzzle_agency.navigation.AppNavigator
+import com.puzzle_agency.navigation.DestinationScreen
+import com.puzzle_agency.navigation.DestinationScreenRoutes
 import com.puzzle_agency.navigation.IAppNavigator
 import com.puzzle_agency.sharedvmtest.Auth1ViewModel
 import com.puzzle_agency.sharedvmtest.Auth2ViewModel
 import com.puzzle_agency.sharedvmtest.HomeViewModel
-import com.puzzle_agency.sharedvmtest.SharedViewModel
 import com.puzzle_agency.sharedvmtest.android.navigation.NavigationEffects
 import com.ramcosta.composedestinations.DestinationsNavHost
 import com.ramcosta.composedestinations.annotation.Destination
@@ -57,7 +57,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @RootNavGraph(start = true)
-@Destination
+@Destination(route = DestinationScreenRoutes.AUTH1)
 @Composable
 fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -65,7 +65,7 @@ fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     }
 }
 
-@Destination
+@Destination(DestinationScreenRoutes.AUTH2)
 @Composable
 fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -74,7 +74,7 @@ fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
 }
 
 
-@Destination
+@Destination(DestinationScreenRoutes.HOME)
 @Composable
 fun Home(viewModel: HomeViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {

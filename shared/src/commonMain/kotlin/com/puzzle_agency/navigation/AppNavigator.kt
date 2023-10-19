@@ -4,7 +4,6 @@ import com.puzzle_agency.sharedvmtest.CommonFlow
 import com.puzzle_agency.sharedvmtest.asCommonFlow
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
-import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.receiveAsFlow
 
 class AppNavigator : IAppNavigator {
@@ -35,7 +34,7 @@ class AppNavigator : IAppNavigator {
     }
 
     override suspend fun navigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
@@ -51,7 +50,7 @@ class AppNavigator : IAppNavigator {
     }
 
     override fun tryNavigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,

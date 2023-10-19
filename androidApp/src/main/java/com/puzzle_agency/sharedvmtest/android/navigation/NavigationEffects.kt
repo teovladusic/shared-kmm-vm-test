@@ -5,7 +5,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
+import com.puzzle_agency.navigation.DestinationScreen
 import com.puzzle_agency.navigation.NavigationIntent
+import com.puzzle_agency.navigation.SwitchRootDestination
+import com.puzzle_agency.sharedvmtest.android.NavGraphs
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
 
@@ -38,6 +41,19 @@ fun NavigationEffects(
 //                        }
                         intent.popUpToRoute?.let { popUpToRoute ->
                             popUpTo(popUpToRoute) { inclusive = intent.inclusive }
+                        }
+                    }
+                }
+
+                is NavigationIntent.SwitchRootScreen -> {
+                    when (intent.destination) {
+                        SwitchRootDestination.Home ->
+                            navHostController.navigate(DestinationScreen.Home.route) {
+                                popUpTo(NavGraphs.root.route) { inclusive = true }
+                            }
+
+                        SwitchRootDestination.Auth -> navHostController.navigate(DestinationScreen.Auth1.route) {
+                            popUpTo(NavGraphs.root.route) { inclusive = true }
                         }
                     }
                 }
