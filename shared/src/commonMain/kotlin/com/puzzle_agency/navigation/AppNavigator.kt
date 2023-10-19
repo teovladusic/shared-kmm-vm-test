@@ -1,5 +1,6 @@
 package com.puzzle_agency.navigation
 
+import com.puzzle_agency.sharedvmtest.CommonFlow
 import com.puzzle_agency.sharedvmtest.asCommonFlow
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
@@ -12,7 +13,7 @@ class AppNavigator : IAppNavigator {
         onBufferOverflow = BufferOverflow.DROP_LATEST,
     )
 
-    override val navigationFlow: Flow<NavigationIntent>
+    override val navigationFlow: CommonFlow<NavigationIntent>
         get() = navigationChannel.receiveAsFlow().asCommonFlow()
 
     override suspend fun navigateBack(route: String?, inclusive: Boolean) {
