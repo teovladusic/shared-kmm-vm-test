@@ -6,6 +6,9 @@ import org.koin.core.component.inject
 
 class ViewModelHelper : KoinComponent {
     val sharedViewModel: SharedViewModel by inject()
+    val auth1ViewModel: Auth1ViewModel by inject()
+    val auth2ViewModel: Auth2ViewModel by inject()
+    val homeViewModel: HomeViewModel by inject()
 }
 
 class Helper: KoinComponent {
