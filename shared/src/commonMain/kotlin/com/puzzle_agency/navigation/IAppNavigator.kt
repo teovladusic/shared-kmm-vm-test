@@ -46,7 +46,7 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 }
 
-enum class Test(val route: String) {
+enum class Destination(val route: String) {
     Auth1("auth1"),
     Auth2("auth2")
 }
