@@ -31,7 +31,7 @@ fun NavigationEffects(
                 }
 
                 is NavigationIntent.NavigateTo -> {
-                    navHostController.navigate(intent.route) {
+                    navHostController.navigate(intent.destination.route) {
                         launchSingleTop = intent.isSingleTop
 //                        restoreState = BottomBarDestination.subClasses.any {
 //                            it.route == intent.route

@@ -39,7 +39,7 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class NavigateTo(
-        val route: String,
+        val destination: Destination,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
