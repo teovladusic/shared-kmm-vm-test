@@ -1,13 +1,19 @@
 package com.puzzle_agency.navigation
 
+import com.puzzle_agency.sharedvmtest.asCommonFlow
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 
 class AppNavigator : IAppNavigator {
     override val navigationChannel = Channel<NavigationIntent>(
         capacity = Int.MAX_VALUE,
         onBufferOverflow = BufferOverflow.DROP_LATEST,
     )
+
+    override val navigationFlow: Flow<NavigationIntent>
+        get() = navigationChannel.receiveAsFlow().asCommonFlow()
 
     override suspend fun navigateBack(route: String?, inclusive: Boolean) {
         navigationChannel.send(

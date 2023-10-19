@@ -1,9 +1,12 @@
 package com.puzzle_agency.navigation
 
 import kotlinx.coroutines.channels.Channel
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.receiveAsFlow
 
 interface IAppNavigator {
     val navigationChannel: Channel<NavigationIntent>
+    val navigationFlow: Flow<NavigationIntent>
 
     suspend fun navigateBack(
         route: String? = null,

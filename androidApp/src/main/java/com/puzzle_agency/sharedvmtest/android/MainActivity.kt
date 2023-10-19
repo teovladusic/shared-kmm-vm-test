@@ -56,6 +56,7 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@RootNavGraph(start = true)
 @Destination
 @Composable
 fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
@@ -72,7 +73,7 @@ fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
     }
 }
 
-@RootNavGraph(start = true)
+
 @Destination
 @Composable
 fun Home(viewModel: HomeViewModel = koinViewModel()) {
