@@ -45,3 +45,8 @@ sealed class NavigationIntent {
         val isSingleTop: Boolean = false,
     ) : NavigationIntent()
 }
+
+enum class Test(val route: String) {
+    Auth1("auth1"),
+    Auth2("auth2")
+}
