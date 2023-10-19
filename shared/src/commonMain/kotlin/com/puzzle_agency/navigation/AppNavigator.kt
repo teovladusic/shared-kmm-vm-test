@@ -64,4 +64,8 @@ class AppNavigator : IAppNavigator {
             ),
         )
     }
+
+    override suspend fun switch(switchRootDestination: SwitchRootDestination) {
+        navigationChannel.send(NavigationIntent.SwitchRootScreen(switchRootDestination))
+    }
 }

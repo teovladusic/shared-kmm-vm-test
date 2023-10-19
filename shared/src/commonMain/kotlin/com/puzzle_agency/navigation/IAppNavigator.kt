@@ -30,6 +30,8 @@ interface IAppNavigator {
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
+
+    suspend fun switch(switchRootDestination: SwitchRootDestination)
 }
 
 sealed class NavigationIntent {

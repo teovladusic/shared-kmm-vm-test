@@ -4,6 +4,7 @@ package com.puzzle_agency.sharedvmtest
 
 import com.puzzle_agency.navigation.DestinationScreen
 import com.puzzle_agency.navigation.IAppNavigator
+import com.puzzle_agency.navigation.SwitchRootDestination
 import com.rickclephas.kmm.viewmodel.KMMViewModel
 import com.rickclephas.kmm.viewmodel.coroutineScope
 import kotlinx.coroutines.delay
@@ -15,7 +16,7 @@ class Auth1ViewModel(private val appNavigator: IAppNavigator) : KMMViewModel() {
             delay(2000)
             appNavigator.navigateTo(DestinationScreen.Auth2)
             delay(2000)
-            appNavigator.navigateBack()
+            appNavigator.switch(SwitchRootDestination.Home)
         }
     }
 }
