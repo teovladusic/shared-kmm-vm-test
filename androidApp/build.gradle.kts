@@ -1,15 +1,16 @@
 plugins {
     id("com.android.application")
     kotlin("android")
+    id("com.google.devtools.ksp") version "1.9.0-1.0.13"
 }
 
 android {
     namespace = "com.puzzle_agency.sharedvmtest.android"
-    compileSdk = 33
+    compileSdk = 34
     defaultConfig {
         applicationId = "com.puzzle_agency.sharedvmtest.android"
         minSdk = 26
-        targetSdk = 33
+        targetSdk = 34
         versionCode = 1
         versionName = "1.0"
     }
@@ -49,4 +50,9 @@ dependencies {
 
     implementation("io.insert-koin:koin-android:3.4.3")
     implementation("io.insert-koin:koin-androidx-compose:3.4.3")
+    implementation("androidx.navigation:navigation-runtime-ktx:2.7.4")
+
+    implementation("io.github.raamcosta.compose-destinations:animations-core:1.9.53")
+    ksp("io.github.raamcosta.compose-destinations:ksp:1.9.53")
+    implementation("androidx.navigation:navigation-compose:2.7.4")
 }
