@@ -14,6 +14,8 @@ class Auth1ViewModel(private val appNavigator: IAppNavigator) : KMMViewModel() {
         viewModelScope.coroutineScope.launch {
             delay(2000)
             appNavigator.navigateTo(Destination.Auth2)
+            delay(2000)
+            appNavigator.navigateBack()
         }
     }
 }
