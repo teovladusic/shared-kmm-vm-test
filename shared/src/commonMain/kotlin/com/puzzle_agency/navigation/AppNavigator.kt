@@ -35,14 +35,14 @@ class AppNavigator : IAppNavigator {
     }
 
     override suspend fun navigateTo(
-        route: String,
+        destination: Destination,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
     ) {
         navigationChannel.send(
             NavigationIntent.NavigateTo(
-                route = route,
+                destination = destination,
                 popUpToRoute = popUpToRoute,
                 inclusive = inclusive,
                 isSingleTop = isSingleTop,
@@ -51,14 +51,14 @@ class AppNavigator : IAppNavigator {
     }
 
     override fun tryNavigateTo(
-        route: String,
+        destination: Destination,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
     ) {
         navigationChannel.trySend(
             NavigationIntent.NavigateTo(
-                route = route,
+                destination = destination,
                 popUpToRoute = popUpToRoute,
                 inclusive = inclusive,
                 isSingleTop = isSingleTop,

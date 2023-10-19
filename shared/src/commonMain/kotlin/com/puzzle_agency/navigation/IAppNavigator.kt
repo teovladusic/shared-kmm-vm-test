@@ -18,14 +18,14 @@ interface IAppNavigator {
     )
 
     suspend fun navigateTo(
-        route: String,
+        destination: Destination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
 
     fun tryNavigateTo(
-        route: String,
+        destination: Destination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
