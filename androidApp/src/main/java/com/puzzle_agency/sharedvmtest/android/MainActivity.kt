@@ -64,14 +64,16 @@ fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     }
 }
 
-@Destination(DestinationScreen.Route.AUTH2)
+@Destination(DestinationScreen.Route.AUTH2, navArgsDelegate = DestinationScreen.Auth2Args::class)
 @Composable
-fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
+fun Authentication2(
+    viewModel: Auth2ViewModel = koinViewModel(),
+    args: DestinationScreen.Auth2Args
+) {
     Box(modifier = Modifier.fillMaxSize()) {
-        Text(text = "Auth 2", modifier = Modifier.align(Alignment.Center))
+        Text(text = args.title, modifier = Modifier.align(Alignment.Center))
     }
 }
-
 
 @Destination(DestinationScreen.Route.HOME)
 @Composable

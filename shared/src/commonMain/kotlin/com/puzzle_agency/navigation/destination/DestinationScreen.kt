@@ -19,7 +19,16 @@ sealed class DestinationScreen(protected val route: String) {
 
     data object HomeScreen : NoArgumentsDestination(Route.HOME)
     data object Auth1 : NoArgumentsDestination(Route.AUTH1)
-    data object Auth2 : NoArgumentsDestination(Route.AUTH2)
+    data class Auth2(val args: Auth2Args) : ArgsDestination(Route.AUTH2, TITLE_KEY) {
+        companion object {
+            private const val TITLE_KEY = "title"
+        }
+        override fun provideFullRoute(): String = route.appendParams(
+            TITLE_KEY to args.title
+        )
+    }
+
+    data class Auth2Args(val title: String)
 
     sealed class ArgsDestination(route: String, vararg params: String) : DestinationScreen(route) {
 
