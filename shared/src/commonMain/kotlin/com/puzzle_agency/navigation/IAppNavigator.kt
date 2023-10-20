@@ -1,6 +1,6 @@
 package com.puzzle_agency.navigation
 
-import com.puzzle_agency.navigation.destination.Destination
+import com.puzzle_agency.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.CommonFlow
 import kotlinx.coroutines.channels.Channel
 
@@ -19,14 +19,14 @@ interface IAppNavigator {
     )
 
     suspend fun navigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
 
     fun tryNavigateTo(
-        destination: Destination,
+        destination: DestinationScreen,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
@@ -42,7 +42,7 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class NavigateTo(
-        val destination: Destination,
+        val destination: DestinationScreen,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,

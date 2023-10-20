@@ -1,6 +1,6 @@
 package com.puzzle_agency.navigation.destination
 
-sealed class Destination(protected val route: String, vararg params: String) {
+sealed class DestinationScreen(protected val route: String) {
 
     abstract val fullRoute: String
 
@@ -10,7 +10,7 @@ sealed class Destination(protected val route: String, vararg params: String) {
         const val AUTH2 = "auth2"
     }
 
-    sealed class NoArgumentsDestination(route: String) : Destination(route) {
+    sealed class NoArgumentsDestination(route: String) : DestinationScreen(route) {
         operator fun invoke(): String = route
 
         override val fullRoute: String
@@ -21,8 +21,7 @@ sealed class Destination(protected val route: String, vararg params: String) {
     data object Auth1 : NoArgumentsDestination(Route.AUTH1)
     data object Auth2 : NoArgumentsDestination(Route.AUTH2)
 
-    sealed class ArgsDestination(route: String, vararg params: String) :
-        Destination(route, *params) {
+    sealed class ArgsDestination(route: String, vararg params: String) : DestinationScreen(route) {
 
         protected abstract fun provideFullRoute(): String
 
@@ -39,9 +38,9 @@ sealed class Destination(protected val route: String, vararg params: String) {
         }
 
         override fun provideFullRoute(): String = route.appendParams(
-                FIST_NAME_KEY to firstName,
-                LAST_NAME_KEY to lastName
-            )
+            FIST_NAME_KEY to firstName,
+            LAST_NAME_KEY to lastName
+        )
     }
 }
 

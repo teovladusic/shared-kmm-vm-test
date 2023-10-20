@@ -1,7 +1,6 @@
 package com.puzzle_agency.sharedvmtest.android
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -14,6 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.puzzle_agency.navigation.IAppNavigator
+import com.puzzle_agency.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.Auth1ViewModel
 import com.puzzle_agency.sharedvmtest.Auth2ViewModel
 import com.puzzle_agency.sharedvmtest.HomeViewModel
@@ -30,10 +30,6 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        val a = com.puzzle_agency.navigation.destination.Destination.UserDetailsScreen("a", "b")
-
-        Log.d("teoteoteo", "${a.fullRoute}")
 
         setContent {
 
@@ -60,7 +56,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @RootNavGraph(start = true)
-@Destination(route = com.puzzle_agency.navigation.destination.Destination.Route.AUTH1)
+@Destination(route = DestinationScreen.Route.AUTH1)
 @Composable
 fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -68,7 +64,7 @@ fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     }
 }
 
-@Destination(com.puzzle_agency.navigation.destination.Destination.Route.AUTH2)
+@Destination(DestinationScreen.Route.AUTH2)
 @Composable
 fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -77,7 +73,7 @@ fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
 }
 
 
-@Destination(com.puzzle_agency.navigation.destination.Destination.Route.HOME)
+@Destination(DestinationScreen.Route.HOME)
 @Composable
 fun Home(viewModel: HomeViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
