@@ -5,9 +5,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.platform.LocalContext
 import androidx.navigation.NavHostController
-import com.puzzle_agency.navigation.DestinationScreen
 import com.puzzle_agency.navigation.NavigationIntent
 import com.puzzle_agency.navigation.SwitchRootDestination
+import com.puzzle_agency.navigation.destination.Destination
 import com.puzzle_agency.sharedvmtest.android.NavGraphs
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -34,7 +34,7 @@ fun NavigationEffects(
                 }
 
                 is NavigationIntent.NavigateTo -> {
-                    navHostController.navigate(intent.destination.route) {
+                    navHostController.navigate(intent.destination.fullRoute) {
                         launchSingleTop = intent.isSingleTop
 //                        restoreState = BottomBarDestination.subClasses.any {
 //                            it.route == intent.route
@@ -48,11 +48,11 @@ fun NavigationEffects(
                 is NavigationIntent.SwitchRootScreen -> {
                     when (intent.destination) {
                         SwitchRootDestination.Home ->
-                            navHostController.navigate(DestinationScreen.Home.route) {
+                            navHostController.navigate(Destination.HomeScreen.fullRoute) {
                                 popUpTo(NavGraphs.root.route) { inclusive = true }
                             }
 
-                        SwitchRootDestination.Auth -> navHostController.navigate(DestinationScreen.Auth1.route) {
+                        SwitchRootDestination.Auth -> navHostController.navigate(Destination.Auth1.fullRoute) {
                             popUpTo(NavGraphs.root.route) { inclusive = true }
                         }
                     }

@@ -1,5 +1,6 @@
 package com.puzzle_agency.navigation
 
+import com.puzzle_agency.navigation.destination.Destination
 import com.puzzle_agency.sharedvmtest.CommonFlow
 import com.puzzle_agency.sharedvmtest.asCommonFlow
 import kotlinx.coroutines.channels.BufferOverflow
@@ -34,7 +35,7 @@ class AppNavigator : IAppNavigator {
     }
 
     override suspend fun navigateTo(
-        destination: DestinationScreen,
+        destination: Destination,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
@@ -50,7 +51,7 @@ class AppNavigator : IAppNavigator {
     }
 
     override fun tryNavigateTo(
-        destination: DestinationScreen,
+        destination: Destination,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,

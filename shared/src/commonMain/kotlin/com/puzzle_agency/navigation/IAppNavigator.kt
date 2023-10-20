@@ -1,5 +1,6 @@
 package com.puzzle_agency.navigation
 
+import com.puzzle_agency.navigation.destination.Destination
 import com.puzzle_agency.sharedvmtest.CommonFlow
 import kotlinx.coroutines.channels.Channel
 
@@ -18,14 +19,14 @@ interface IAppNavigator {
     )
 
     suspend fun navigateTo(
-        destination: DestinationScreen,
+        destination: Destination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
 
     fun tryNavigateTo(
-        destination: DestinationScreen,
+        destination: Destination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
@@ -41,25 +42,13 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class NavigateTo(
-        val destination: DestinationScreen,
+        val destination: Destination,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
     ) : NavigationIntent()
 
     data class SwitchRootScreen(val destination: SwitchRootDestination) : NavigationIntent()
-}
-
-object DestinationScreenRoutes {
-    const val HOME = "home"
-    const val AUTH1 = "auth1"
-    const val AUTH2 = "auth2"
-}
-
-enum class DestinationScreen(val route: String) {
-    Home(DestinationScreenRoutes.HOME),
-    Auth1(DestinationScreenRoutes.AUTH1),
-    Auth2(DestinationScreenRoutes.AUTH2)
 }
 
 enum class SwitchRootDestination() {

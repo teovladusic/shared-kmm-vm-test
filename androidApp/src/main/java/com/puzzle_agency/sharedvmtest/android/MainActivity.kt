@@ -1,6 +1,7 @@
 package com.puzzle_agency.sharedvmtest.android
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Box
@@ -12,8 +13,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
-import com.puzzle_agency.navigation.DestinationScreen
-import com.puzzle_agency.navigation.DestinationScreenRoutes
 import com.puzzle_agency.navigation.IAppNavigator
 import com.puzzle_agency.sharedvmtest.Auth1ViewModel
 import com.puzzle_agency.sharedvmtest.Auth2ViewModel
@@ -31,6 +30,10 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
+        val a = com.puzzle_agency.navigation.destination.Destination.UserDetailsScreen("a", "b")
+
+        Log.d("teoteoteo", "${a.fullRoute}")
 
         setContent {
 
@@ -57,7 +60,7 @@ class MainActivity : ComponentActivity() {
 }
 
 @RootNavGraph(start = true)
-@Destination(route = DestinationScreenRoutes.AUTH1)
+@Destination(route = com.puzzle_agency.navigation.destination.Destination.Route.AUTH1)
 @Composable
 fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -65,7 +68,7 @@ fun Authentication1(viewModel: Auth1ViewModel = koinViewModel()) {
     }
 }
 
-@Destination(DestinationScreenRoutes.AUTH2)
+@Destination(com.puzzle_agency.navigation.destination.Destination.Route.AUTH2)
 @Composable
 fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
@@ -74,7 +77,7 @@ fun Authentication2(viewModel: Auth2ViewModel = koinViewModel()) {
 }
 
 
-@Destination(DestinationScreenRoutes.HOME)
+@Destination(com.puzzle_agency.navigation.destination.Destination.Route.HOME)
 @Composable
 fun Home(viewModel: HomeViewModel = koinViewModel()) {
     Box(modifier = Modifier.fillMaxSize()) {
