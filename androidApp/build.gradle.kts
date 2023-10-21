@@ -2,6 +2,8 @@ plugins {
     id("com.android.application")
     kotlin("android")
     id("com.google.devtools.ksp") version "1.9.0-1.0.13"
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
 }
 
 android {

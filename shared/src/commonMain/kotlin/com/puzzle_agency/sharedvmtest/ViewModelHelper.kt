@@ -1,6 +1,6 @@
 package com.puzzle_agency.sharedvmtest
 
-import com.puzzle_agency.navigation.IAppNavigator
+import com.puzzle_agency.sharedvmtest.navigation.IAppNavigator
 import org.koin.core.component.KoinComponent
 import org.koin.core.component.inject
 

@@ -1,6 +1,6 @@
-package com.puzzle_agency.navigation
+package com.puzzle_agency.sharedvmtest.navigation
 
-import com.puzzle_agency.navigation.destination.DestinationScreen
+import com.puzzle_agency.sharedvmtest.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.CommonFlow
 import kotlinx.coroutines.channels.Channel
 
