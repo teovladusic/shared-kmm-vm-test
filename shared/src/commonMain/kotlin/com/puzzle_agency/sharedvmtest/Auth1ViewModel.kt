@@ -5,6 +5,7 @@ package com.puzzle_agency.sharedvmtest
 import com.puzzle_agency.sharedvmtest.navigation.IAppNavigator
 import com.puzzle_agency.sharedvmtest.navigation.SwitchRootDestination
 import com.puzzle_agency.sharedvmtest.navigation.destination.DestinationScreen
+import com.puzzle_agency.sharedvmtest.navigation.destination.Main
 import com.puzzle_agency.sharedvmtest.navigation.destination.TestObject
 import com.rickclephas.kmm.viewmodel.KMMViewModel
 import com.rickclephas.kmm.viewmodel.coroutineScope
@@ -15,7 +16,7 @@ class Auth1ViewModel(private val appNavigator: IAppNavigator) : KMMViewModel() {
     init {
         viewModelScope.coroutineScope.launch {
             delay(2000)
-            appNavigator.switch(SwitchRootDestination.Home)
+            appNavigator.navigateTo(Main.Home)
         }
     }
 }
