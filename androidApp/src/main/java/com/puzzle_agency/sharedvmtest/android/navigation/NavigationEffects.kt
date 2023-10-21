@@ -27,24 +27,16 @@ fun NavigationEffects(
             when (intent) {
                 is NavigationIntent.NavigateBack -> {
                     val route = intent.route
-                    if (route != null) {
-                        navHostController.popBackStack(route, intent.inclusive)
-                    } else {
-                        navHostController.popBackStack()
-                    }
+                    if (route != null) navHostController.popBackStack(route, intent.inclusive)
+                    else navHostController.popBackStack()
                 }
 
-                is NavigationIntent.NavigateTo -> {
-                    navHostController.navigate(intent.destination.route) {
-                        launchSingleTop = intent.isSingleTop
-//                        restoreState = BottomBarDestination.subClasses.any {
-//                            it.route == intent.route
-//                        }
-                        intent.popUpToRoute?.let { popUpToRoute ->
-                            popUpTo(popUpToRoute) { inclusive = intent.inclusive }
-                        }
-                    }
-                }
+                is NavigationIntent.NavigateTo -> navHostController.navigateTo(
+                    intent.destination.route,
+                    intent.popUpToRoute,
+                    intent.inclusive,
+                    intent.isSingleTop
+                )
 
                 is NavigationIntent.SwitchRootScreen -> {
                     when (intent.destination) {
@@ -60,7 +52,33 @@ fun NavigationEffects(
                         }
                     }
                 }
+
+                is NavigationIntent.PresentSheet -> navHostController.navigateTo(
+                    intent.destination.route,
+                    intent.popUpToRoute,
+                    intent.inclusive,
+                    intent.isSingleTop
+                )
             }
+        }
+    }
+}
+
+private fun NavHostController.navigateTo(
+    route: String,
+    popUpToRoute: String? = null,
+    inclusive: Boolean = false,
+    isSingleTop: Boolean = false,
+) {
+    navigate(route) {
+        launchSingleTop = isSingleTop
+
+//      restoreState = BottomBarDestination.subClasses.any {
+//          it.route == intent.route
+//      }
+
+        popUpToRoute?.let { popUpToRoute ->
+            popUpTo(popUpToRoute) { this.inclusive = inclusive }
         }
     }
 }

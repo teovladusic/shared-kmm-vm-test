@@ -2,6 +2,7 @@ package com.puzzle_agency.sharedvmtest.navigation
 
 import com.puzzle_agency.sharedvmtest.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.CommonFlow
+import com.puzzle_agency.sharedvmtest.navigation.destination.SheetDestinationScreen
 import kotlinx.coroutines.channels.Channel
 
 interface IAppNavigator {
@@ -33,6 +34,13 @@ interface IAppNavigator {
     )
 
     suspend fun switch(switchRootDestination: SwitchRootDestination)
+
+    suspend fun showSheet(
+        sheetDestinationScreen: SheetDestinationScreen,
+        popUpToRoute: String? = null,
+        inclusive: Boolean = false,
+        isSingleTop: Boolean = false,
+    )
 }
 
 sealed class NavigationIntent {
@@ -49,6 +57,13 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class SwitchRootScreen(val destination: SwitchRootDestination) : NavigationIntent()
+
+    data class PresentSheet(
+        val destination: SheetDestinationScreen,
+        val popUpToRoute: String? = null,
+        val inclusive: Boolean = false,
+        val isSingleTop: Boolean = false,
+    ) : NavigationIntent()
 }
 
 enum class SwitchRootDestination() {
