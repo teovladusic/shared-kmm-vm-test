@@ -1,9 +1,9 @@
 package com.puzzle_agency.sharedvmtest.navigation
 
-import com.puzzle_agency.sharedvmtest.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.CommonFlow
 import com.puzzle_agency.sharedvmtest.asCommonFlow
-import com.puzzle_agency.sharedvmtest.navigation.destination.SheetDestinationScreen
+import com.puzzle_agency.sharedvmtest.navigation.destination.MainScreenDestination
+import com.puzzle_agency.sharedvmtest.navigation.destination.MainSheetDestination
 import kotlinx.coroutines.channels.BufferOverflow
 import kotlinx.coroutines.channels.Channel
 import kotlinx.coroutines.flow.receiveAsFlow
@@ -26,17 +26,8 @@ class AppNavigator : IAppNavigator {
         )
     }
 
-    override fun tryNavigateBack(route: String?, inclusive: Boolean) {
-        navigationChannel.trySend(
-            NavigationIntent.NavigateBack(
-                route = route,
-                inclusive = inclusive,
-            ),
-        )
-    }
-
     override suspend fun navigateTo(
-        destination: DestinationScreen,
+        destination: MainScreenDestination,
         popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
@@ -51,28 +42,9 @@ class AppNavigator : IAppNavigator {
         )
     }
 
-    override fun tryNavigateTo(
-        destination: DestinationScreen,
+    override suspend fun presentSheet(
+        sheetDestinationScreen: MainSheetDestination,
         popUpToRoute: String?,
-        inclusive: Boolean,
-        isSingleTop: Boolean,
-    ) {
-        navigationChannel.trySend(
-            NavigationIntent.NavigateTo(
-                destination = destination,
-                popUpToRoute = popUpToRoute,
-                inclusive = inclusive,
-                isSingleTop = isSingleTop,
-            ),
-        )
-    }
-
-    override suspend fun switch(switchRootDestination: SwitchRootDestination) {
-        navigationChannel.send(NavigationIntent.SwitchRootScreen(switchRootDestination))
-    }
-
-    override suspend fun showSheet(
-        sheetDestinationScreen: SheetDestinationScreen, popUpToRoute: String?,
         inclusive: Boolean,
         isSingleTop: Boolean,
     ) {

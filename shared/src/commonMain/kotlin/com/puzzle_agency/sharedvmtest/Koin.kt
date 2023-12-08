@@ -13,12 +13,14 @@ fun initKoin(appDeclaration: KoinAppDeclaration = {}) = startKoin {
 
 fun viewModelModule() = module {
     factory { SharedViewModel() }
-    factory { Auth1ViewModel(get()) }
-    factory { Auth2ViewModel() }
-    factory { HomeViewModel() }
+    factory { HomeViewModel(get()) }
+    factory { (name: String) ->
+        NameViewModel(name)
+    }
     single<IAppNavigator> { AppNavigator() }
 }
 
 
+@Suppress("Unused")
 //called by ios
 fun initKoin() = initKoin {}

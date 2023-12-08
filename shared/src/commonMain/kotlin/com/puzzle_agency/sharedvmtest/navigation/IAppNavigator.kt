@@ -1,8 +1,8 @@
 package com.puzzle_agency.sharedvmtest.navigation
 
-import com.puzzle_agency.sharedvmtest.navigation.destination.DestinationScreen
 import com.puzzle_agency.sharedvmtest.CommonFlow
-import com.puzzle_agency.sharedvmtest.navigation.destination.SheetDestinationScreen
+import com.puzzle_agency.sharedvmtest.navigation.destination.MainScreenDestination
+import com.puzzle_agency.sharedvmtest.navigation.destination.MainSheetDestination
 import kotlinx.coroutines.channels.Channel
 
 interface IAppNavigator {
@@ -14,29 +14,15 @@ interface IAppNavigator {
         inclusive: Boolean = false,
     )
 
-    fun tryNavigateBack(
-        route: String? = null,
-        inclusive: Boolean = false,
-    )
-
     suspend fun navigateTo(
-        destination: DestinationScreen,
+        destination: MainScreenDestination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
     )
 
-    fun tryNavigateTo(
-        destination: DestinationScreen,
-        popUpToRoute: String? = null,
-        inclusive: Boolean = false,
-        isSingleTop: Boolean = false,
-    )
-
-    suspend fun switch(switchRootDestination: SwitchRootDestination)
-
-    suspend fun showSheet(
-        sheetDestinationScreen: SheetDestinationScreen,
+    suspend fun presentSheet(
+        sheetDestinationScreen: MainSheetDestination,
         popUpToRoute: String? = null,
         inclusive: Boolean = false,
         isSingleTop: Boolean = false,
@@ -50,23 +36,16 @@ sealed class NavigationIntent {
     ) : NavigationIntent()
 
     data class NavigateTo(
-        val destination: DestinationScreen,
+        val destination: MainScreenDestination,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
     ) : NavigationIntent()
-
-    data class SwitchRootScreen(val destination: SwitchRootDestination) : NavigationIntent()
 
     data class PresentSheet(
-        val destination: SheetDestinationScreen,
+        val destination: MainSheetDestination,
         val popUpToRoute: String? = null,
         val inclusive: Boolean = false,
         val isSingleTop: Boolean = false,
     ) : NavigationIntent()
-}
-
-enum class SwitchRootDestination() {
-    Home,
-    Auth
 }
