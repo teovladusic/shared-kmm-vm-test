@@ -1,3 +1,4 @@
+@file:Suppress("Unused")
 package com.puzzle_agency.sharedvmtest
 
 import com.puzzle_agency.sharedvmtest.navigation.IAppNavigator
